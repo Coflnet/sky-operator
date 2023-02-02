@@ -7,6 +7,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	ctrl "sigs.k8s.io/controller-runtime"
+  k8smetrics "sigs.k8s.io/controller-runtime/pkg/metrics"
 
 	api "github.com/Coflnet/sky-operator/target/dir"
 	"github.com/Coflnet/sky-operator/utils"
@@ -30,7 +31,7 @@ func Start() {
 }
 
 func initialize() {
-
+  k8smetrics.Registry.MustRegister(PreAPIGauge)
 }
 
 func loop() {
