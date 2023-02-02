@@ -1,0 +1,12 @@
+apiVersion: sky.coflnet.com/v1alpha1
+kind: Proxy
+metadata:
+  labels:
+    app.kubernetes.io/name: proxy
+    app.kubernetes.io/instance: proxy-sample
+    app.kubernetes.io/part-of: sky-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: sky-operator
+  name: proxy-sample
+spec:
+  strategy: Recreate

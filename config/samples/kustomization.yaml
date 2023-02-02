@@ -1,0 +1,4 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- sky_v1alpha1_proxy.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

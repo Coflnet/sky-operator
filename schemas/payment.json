@@ -1,0 +1,3027 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Payments",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/Apply": {
+      "post": {
+        "tags": [
+          "Apply"
+        ],
+        "summary": "Brings all products, groups and roles into the given state\r\nwill disable/delete anything not present so use carefully",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemState"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemState"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemState"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/SystemState"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Callback/stripe": {
+      "post": {
+        "tags": [
+          "Callback"
+        ],
+        "summary": "Webhook callback for stripe",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Callback/paypal": {
+      "post": {
+        "tags": [
+          "Callback"
+        ],
+        "summary": "accept callbacks from paypal",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Group": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Group"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Group/{groupSlug}": {
+      "get": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "groupSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "groupSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Group"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "groupSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Group/{groupSlug}/products": {
+      "post": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "groupSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Group"
+        ],
+        "parameters": [
+          {
+            "name": "groupSlug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Group"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/p/{productSlug}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get the details of a product",
+        "parameters": [
+          {
+            "name": "productSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get all products",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Updates a product by replacing it with a new one.\r\nOld products can not be deleted to furfill accounting needs",
+        "requestBody": {
+          "description": "the product to update",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseableProduct"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseableProduct"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseableProduct"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseableProduct"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseableProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/topup": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get topup options",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Updates a topup option by replacing it with a new one.\r\nOld options get a new slug and are marked as disabled",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpProduct"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpProduct"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpProduct"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpProduct"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpProduct"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpProduct"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/services": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get services",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PurchaseableProduct"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/user/{userId}": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Get adjusted prices for a user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlugs",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RuleResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RuleResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RuleResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/service/{serviceSlug}/count": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Count of users owning a service",
+        "parameters": [
+          {
+            "name": "serviceSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Products/service/{serviceSlug}/ids": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "Gets all userIds owning a service",
+        "parameters": [
+          {
+            "name": "serviceSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rules": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Returns all rules",
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rule"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rule"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rule"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Creates a new rule",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RuleCreate"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RuleCreate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RuleCreate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RuleCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rules/{ruleSlug}": {
+      "get": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Returns a rule by slug",
+        "parameters": [
+          {
+            "name": "ruleSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Rules"
+        ],
+        "summary": "Deletes a rule",
+        "parameters": [
+          {
+            "name": "ruleSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rule"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TopUp/options": {
+      "get": {
+        "tags": [
+          "TopUp"
+        ],
+        "summary": "All available topup options",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TopUpProduct"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TopUp/stripe": {
+      "post": {
+        "tags": [
+          "TopUp"
+        ],
+        "summary": "Creates a payment session with stripe",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Additional options",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TopUp/paypal": {
+      "post": {
+        "tags": [
+          "TopUp"
+        ],
+        "summary": "Creates a payment session with paypal",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Additional options",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TopUpOptions"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TopUp/custom": {
+      "post": {
+        "tags": [
+          "TopUp"
+        ],
+        "summary": "Creates a custom topup that is instantly credited",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomTopUp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomTopUp"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomTopUp"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomTopUp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TopUpIdResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TopUp/compensate": {
+      "post": {
+        "tags": [
+          "TopUp"
+        ],
+        "summary": "Compensates users of a service for something",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Compensation"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Compensation"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Compensation"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Compensation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Int32ValueTuple"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Int32ValueTuple"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Int32Int32ValueTuple"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Transaction/u/{userId}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Transaction/planed/u/{userId}": {
+      "get": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExternalTransaction"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Transaction/planed/u/{userId}/t/{transactionId}": {
+      "put": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalTransaction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Transaction"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanedTransaction"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Transaction/send": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionEvent"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionEvent"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionEvent"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionEvent"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/User/{userId}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Creates a new user with the given id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Gets the user with the given id",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/owns/{productSlug}/until": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Returns the time for how long a user owns a given product",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/owns/longest": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Returns the bigest time out of a list of product ids",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/owns": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Returns all ownership data for an user out of a list of interested",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OwnerShip"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OwnerShip"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OwnerShip"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/User/{userId}/owns/until": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Returns all ownership data for an user out of a list of interested",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "uniqueItems": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/purchase/{productSlug}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Purchase a new product if enough funds are available",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/service/purchase/{productSlug}": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Purchase/extends a service if enough funds are available",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "productSlug",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/{transactionId}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Undo the purchase of a service",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/User/{userId}/transfer": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Transfers coins to another user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionEvent"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionEvent"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionEvent"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Compensation": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "The product id owners of which to compensate",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "description": "A reason for the compensation, also serves as double compensation prevention",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "description": "How much to compensate",
+            "format": "int32"
+          },
+          "when": {
+            "type": "string",
+            "description": "At what time ownership of Coflnet.Payments.Models.Product should be looked for (services might expired since)",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Compensation for some kind of incident"
+      },
+      "CustomTopUp": {
+        "type": "object",
+        "properties": {
+          "productId": {
+            "type": "string",
+            "description": "What product this coresponds to (the product can define additional information)",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "description": "How much to add/substract",
+            "format": "int64"
+          },
+          "reference": {
+            "type": "string",
+            "description": "Reference/Reason this topup took place, dupplicates will be rejected",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a custom adjustment to an users balance"
+      },
+      "ExternalTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "productId": {
+            "type": "string",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double"
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Group": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Key",
+            "format": "int32"
+          },
+          "slug": {
+            "maxLength": 32,
+            "type": "string",
+            "description": "Identifier of this group",
+            "nullable": true
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            },
+            "description": "Products in this group",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A group is a collection of one or more Coflnet.Payments.Models.Product"
+      },
+      "Int32Int32ValueTuple": {
+        "type": "object",
+        "properties": {
+          "item1": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "item2": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OwnerShip": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Id",
+            "format": "int64"
+          },
+          "product": {
+            "$ref": "#/components/schemas/PurchaseableProduct"
+          },
+          "expires": {
+            "type": "string",
+            "description": "How long",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents an ownership of some product by some user.\r\nHas the time of when the ownership expires."
+      },
+      "PlanedTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Id",
+            "format": "int64"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "amount": {
+            "type": "number",
+            "description": "The size of the transaction",
+            "format": "double"
+          },
+          "reference": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Custom reference data for this transaction.\r\nExternal identifiers, notes, metadata",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Timestamp of this transaction",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "A empheral transaction that can still be changed. \r\nIntended for invoices that may still be canceled or bidding"
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Key",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Title of this product",
+            "nullable": true
+          },
+          "slug": {
+            "maxLength": 32,
+            "type": "string",
+            "description": "unique Slug for this product",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "DB-Level description may not be displayed to the end user directly (localisation n stuff)",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "description": "The exact amount this product costs to purchase",
+            "format": "double"
+          },
+          "ownershipSeconds": {
+            "type": "integer",
+            "description": "How long this product is owned by an user in seconds",
+            "format": "int64"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProductType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Base class for Products"
+      },
+      "ProductType": {
+        "enum": [
+          "NONE",
+          "SERVICE",
+          "COLLECTABLE",
+          "TOP_UP",
+          "LOCKED",
+          "DISABLED",
+          "VARIABLE_PRICE"
+        ],
+        "type": "string",
+        "description": "Types of products"
+      },
+      "PurchaseableProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary Key",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Title of this product",
+            "nullable": true
+          },
+          "slug": {
+            "maxLength": 32,
+            "type": "string",
+            "description": "unique Slug for this product",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "DB-Level description may not be displayed to the end user directly (localisation n stuff)",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "description": "The exact amount this product costs to purchase",
+            "format": "double"
+          },
+          "ownershipSeconds": {
+            "type": "integer",
+            "description": "How long this product is owned by an user in seconds",
+            "format": "int64"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProductType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Products that can be purchased"
+      },
+      "Rule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Primary key of this rule",
+            "format": "int32"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Identifier of this rule",
+            "nullable": true
+          },
+          "priority": {
+            "type": "integer",
+            "description": "In what order to apply the rules",
+            "format": "int32"
+          },
+          "requires": {
+            "$ref": "#/components/schemas/Group"
+          },
+          "targets": {
+            "$ref": "#/components/schemas/Group"
+          },
+          "flags": {
+            "$ref": "#/components/schemas/RuleFlags"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount this rule changes the target property",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Rules can change attributes of products based on the ownership of another"
+      },
+      "RuleCreate": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "Identifier of this rule",
+            "nullable": true
+          },
+          "priority": {
+            "type": "integer",
+            "description": "In what order to apply the rules (highest first)",
+            "format": "int32"
+          },
+          "requiresGroup": {
+            "type": "string",
+            "description": "This rule only applies if the user owns a product contained in this group\r\nif null, the rule always applies to the target group (except overriden by another rule)",
+            "nullable": true
+          },
+          "targetsGroup": {
+            "type": "string",
+            "description": "This rule applies to all products in this group",
+            "nullable": true
+          },
+          "flags": {
+            "$ref": "#/components/schemas/RuleFlags"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount this rule changes the target property",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Arguments for creating a new rule"
+      },
+      "RuleFlags": {
+        "enum": [
+          "NONE",
+          "INVERT",
+          "PERCENT",
+          "LONGER",
+          "DISCOUNT",
+          "EARLY_BREAK",
+          "BLOCK_PURCHASE"
+        ],
+        "type": "string",
+        "description": "Flags modifying a Coflnet.Payments.Models.Rule"
+      },
+      "RuleResult": {
+        "type": "object",
+        "properties": {
+          "modifiedProduct": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Rule"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SystemState": {
+        "type": "object",
+        "properties": {
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchaseableProduct"
+            },
+            "description": "Available products",
+            "nullable": true
+          },
+          "topUps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TopUpProduct"
+            },
+            "description": "Topups that are currently active",
+            "nullable": true
+          },
+          "groups": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "description": "What products go into which groups",
+            "nullable": true
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RuleCreate"
+            },
+            "description": "Rules",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "State to get the db into\r\nUseful for gitops"
+      },
+      "TopUpIdResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Checkout id",
+            "nullable": true
+          },
+          "dirctLink": {
+            "type": "string",
+            "description": "Directlink to redirect the user to",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response containing an id"
+      },
+      "TopUpOptions": {
+        "type": "object",
+        "properties": {
+          "successUrl": {
+            "type": "string",
+            "description": "Overwrite the default redirect url after successful payment",
+            "nullable": true
+          },
+          "cancelUrl": {
+            "type": "string",
+            "description": "Overwrite the default redirect url for anything else but payment",
+            "nullable": true
+          },
+          "userEmail": {
+            "type": "string",
+            "description": "If provided, this value will be used when the Customer object is created. If not provided, customers will be asked to enter their email address",
+            "nullable": true
+          },
+          "topUpAmount": {
+            "type": "integer",
+            "description": "Percise amount of coflcoins to topup",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TopUpProduct": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "description": "The price of this Coflnet.Payments.Models.TopUpProduct in Coflnet.Payments.Models.TopUpProduct.CurrencyCode",
+            "format": "double"
+          },
+          "currencyCode": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "The currency code",
+            "nullable": true
+          },
+          "providerSlug": {
+            "maxLength": 16,
+            "type": "string",
+            "description": "What provider this top up is valid for \r\n(differnt fees can require different prices)",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "description": "Primary Key",
+            "format": "int32"
+          },
+          "title": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Title of this product",
+            "nullable": true
+          },
+          "slug": {
+            "maxLength": 32,
+            "type": "string",
+            "description": "unique Slug for this product",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "description": "DB-Level description may not be displayed to the end user directly (localisation n stuff)",
+            "nullable": true
+          },
+          "cost": {
+            "type": "number",
+            "description": "The exact amount this product costs to purchase",
+            "format": "double"
+          },
+          "ownershipSeconds": {
+            "type": "integer",
+            "description": "How long this product is owned by an user in seconds",
+            "format": "int64"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ProductType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The internal id of the transaction",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "string",
+            "description": "Id of the user triggering the transaction",
+            "nullable": true
+          },
+          "productSlug": {
+            "type": "string",
+            "description": "Slug of the product",
+            "nullable": true
+          },
+          "productId": {
+            "type": "integer",
+            "description": "Unique id of this product settings",
+            "format": "int32"
+          },
+          "ownedSeconds": {
+            "type": "integer",
+            "description": "How long this product will last till it expires",
+            "format": "int64"
+          },
+          "productType": {
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "amount": {
+            "type": "number",
+            "description": "The transaction amount",
+            "format": "double"
+          },
+          "reference": {
+            "type": "string",
+            "description": "Optional reference",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When this transaction occured",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Event produced when a transaction occurs"
+      },
+      "TransferRequest": {
+        "type": "object",
+        "properties": {
+          "targetUser": {
+            "type": "string",
+            "description": "The identifier of the user which should receive the funds",
+            "nullable": true
+          },
+          "reference": {
+            "type": "string",
+            "description": "A unique reference to prevent double transfers",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount to transfer",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Transfer request to another user"
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "primary key",
+            "format": "int32"
+          },
+          "externalId": {
+            "maxLength": 32,
+            "type": "string",
+            "description": "The identifier of the account system",
+            "nullable": true
+          },
+          "balance": {
+            "type": "number",
+            "description": "Balance of this user",
+            "format": "double"
+          },
+          "availableBalance": {
+            "type": "number",
+            "description": "The balance available (Coflnet.Payments.Models.User.Balance minus any Coflnet.Payments.Models.PlanedTransaction)",
+            "format": "double"
+          },
+          "owns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OwnerShip"
+            },
+            "description": "Things this user owns",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "An user capable of making transactions"
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# permissions for end users to view proxies.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: proxy-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: sky-operator
+    app.kubernetes.io/part-of: sky-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: proxy-viewer-role
+rules:
+- apiGroups:
+  - sky.coflnet.com
+  resources:
+  - proxies
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - sky.coflnet.com
+  resources:
+  - proxies/status
+  verbs:
+  - get

@@ -1,0 +1,19 @@
+domain: coflnet.com
+layout:
+- go.kubebuilder.io/v4-alpha
+plugins:
+  manifests.sdk.operatorframework.io/v2: {}
+  scorecard.sdk.operatorframework.io/v2: {}
+projectName: sky-operator
+repo: github.com/Coflnet/sky-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: coflnet.com
+  group: sky
+  kind: Proxy
+  path: github.com/Coflnet/sky-operator/api/v1alpha1
+  version: v1alpha1
+version: "3"
