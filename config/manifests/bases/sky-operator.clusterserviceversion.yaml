@@ -1,0 +1,49 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+  name: sky-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: Proxy is the Schema for the proxies API
+      displayName: Proxy
+      kind: Proxy
+      name: proxies.sky.coflnet.com
+      version: v1alpha1
+  description: operator that handles sky related stuff
+  displayName: sky-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - sky
+  - proxy
+  - operator
+  links:
+  - name: Sky Operator
+    url: https://sky-operator.domain
+  maintainers:
+  - email: muehlhans.f@coflnet.com
+    name: florian muehlhans
+  maturity: alpha
+  provider:
+    name: sky-operator
+  version: 0.0.0

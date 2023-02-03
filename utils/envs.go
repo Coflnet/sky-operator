@@ -10,7 +10,7 @@ var (
 )
 
 func PaymentBaseURL() string {
-	return getEnvVar("PAYMENT_BASE_URL")
+	return getEnvVar("PAYMENTS_BASE_URL")
 }
 
 func getEnvVar(name string) string {
